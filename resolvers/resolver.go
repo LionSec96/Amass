@@ -514,7 +514,7 @@ func (r *BaseResolver) finishProcessing(m *dns.Msg, req *resolveRequest) {
 }
 
 func (r *BaseResolver) tcpExchange(id uint16, req *resolveRequest) {
-	if len(req.Msg.Question) == 0 {
+	if req.Msg == nil || len(req.Msg.Question) == 0 {
 		return
 	}
 	msg := queryMessage(r.getID(), req.Msg.Question[0].Name, req.Msg.Question[0].Qtype)
